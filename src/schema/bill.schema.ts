@@ -34,3 +34,4 @@ export class Bill extends Document {
 }
 
 export const BillSchema = SchemaFactory.createForClass(Bill);
+export type BillDocument = Bill & Document;

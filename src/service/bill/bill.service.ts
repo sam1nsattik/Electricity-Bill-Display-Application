@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Bill, BillDocument } from 'src/schema/bill.schema';
-import { CreateBillDto } from 'src/dto/create-bill.dto'
+import { CreateBillDto } from 'src/dto/bill/create-bill.dto';
 
 @Injectable()
 export class BillService {

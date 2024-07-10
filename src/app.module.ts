@@ -9,8 +9,13 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { JsonResponseMiddleware } from './helper/json-response.middleware';
 import { TimestampMiddleware } from './helper/timestamp.middleware';
 //import { DeletedAtMiddleware } from './helper/deleted-at.middleware';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { Bill, BillSchema } from './schema/bill.schema';
+import { Client, ClientSchema } from './schema/client.schema';
+import { MeterReading, MeterReadingSchema } from './schema/meter-reading.schema';
+import { AmountDetail, AmountDetailSchema } from './schema/amount-detail.schema';
+import { PaymentDetail, PaymentDetailSchema } from './schema/payment-detail.schema';
+import { BillService } from './service/bill/bill.service';
+import { BillController } from 'src/controller/bill/bill.controller';
 
 
 @Module({
@@ -26,11 +31,18 @@ import { AppService } from './app.service';
         dbName: process.env.DB_NAME,
       },
     ),
+    MongooseModule.forFeature([
+      { name: Bill.name, schema: BillSchema },
+      { name: Client.name, schema: ClientSchema },
+      { name: MeterReading.name, schema: MeterReadingSchema },
+      { name: AmountDetail.name, schema: AmountDetailSchema },
+      { name: PaymentDetail.name, schema: PaymentDetailSchema },
+    ])
   ],
   controllers: [
-    AppController,
+    BillController,
   ],
-  providers: [AppService],
+  providers: [BillService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

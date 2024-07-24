@@ -24,10 +24,10 @@ import { BillController } from 'src/controller/bill/bill.controller';
       isGlobal: true,
     }),
     MongooseModule.forRoot(
-      `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST
-      }:${parseInt(process.env.DB_PORT)}/?authMechanism=DEFAULT&authSource=${process.env.DB_NAME
-      }`,
+      `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}?authSource=admin`,
       {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
         dbName: process.env.DB_NAME,
       },
     ),
